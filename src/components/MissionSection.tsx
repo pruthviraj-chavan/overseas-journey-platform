@@ -1,42 +1,16 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Lightbulb, Target, Users } from 'lucide-react';
 
 const MissionSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    const children = sectionRef.current?.querySelectorAll('.mission-item') || [];
-    children.forEach(child => {
-      observer.observe(child);
-    });
-    
-    return () => {
-      children.forEach(child => {
-        observer.unobserve(child);
-      });
-    };
-  }, []);
-  
   return (
-    <section className="py-16 bg-white relative overflow-hidden" ref={sectionRef}>
+    <section className="py-12 bg-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-pink opacity-5 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-blue opacity-5 blur-3xl rounded-full"></div>
       
       <div className="container mx-auto container-padding">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-block rounded-full bg-emprise-pink/10 px-4 py-1.5 text-sm font-medium text-emprise-pink mb-4">
             Our Purpose
           </div>
@@ -56,26 +30,22 @@ const MissionSection = () => {
             {
               icon: <Lightbulb size={32} className="text-emprise-pink" />,
               title: "Our Mission",
-              description: "To empower students with comprehensive guidance and support, helping them navigate international education pathways and realize their full potential on the global stage.",
-              delay: 0
+              description: "To empower students with comprehensive guidance and support, helping them navigate international education pathways and realize their full potential on the global stage."
             },
             {
               icon: <Target size={32} className="text-emprise-gold" />,
               title: "Our Vision",
-              description: "To be the most trusted education consultancy that transforms the academic and career aspirations of Indian students through ethical, transparent, and student-centric services.",
-              delay: 200
+              description: "To be the most trusted education consultancy that transforms the academic and career aspirations of Indian students through ethical, transparent, and student-centric services."
             },
             {
               icon: <Users size={32} className="text-emprise-blue.light" />,
               title: "Our Values",
-              description: "Integrity, excellence, student-centricity, and innovation form the core of our approach. We believe in building lasting relationships based on trust and delivering beyond expectations.",
-              delay: 400
+              description: "Integrity, excellence, student-centricity, and innovation form the core of our approach. We believe in building lasting relationships based on trust and delivering beyond expectations."
             }
           ].map((item, index) => (
             <div 
               key={index} 
-              className="glass-card p-8 rounded-xl border border-gray-100 shadow-card opacity-0 mission-item"
-              style={{ animationDelay: `${item.delay}ms` }}
+              className="glass-card p-8 rounded-xl border border-gray-100 shadow-card"
             >
               <div className="mb-6">
                 {item.icon}

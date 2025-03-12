@@ -1,39 +1,9 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Award, Globe, Users, BookOpen, Briefcase, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const WhyChooseUsSection = () => {
-  const cardsRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.benefit-card');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('animate-fade-in');
-              }, index * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (cardsRef.current) {
-      observer.observe(cardsRef.current);
-    }
-    
-    return () => {
-      if (cardsRef.current) {
-        observer.unobserve(cardsRef.current);
-      }
-    };
-  }, []);
-
   const benefits = [
     {
       icon: <Users size={24} />,
@@ -74,12 +44,12 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-white relative overflow-hidden">
+    <section className="py-12 bg-white relative overflow-hidden">
       <div className="absolute -top-40 -left-40 w-80 h-80 rounded-full bg-gradient-pink opacity-5 blur-3xl"></div>
       <div className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full bg-gradient-gold opacity-5 blur-3xl"></div>
       
       <div className="container mx-auto container-padding relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-block rounded-full bg-emprise-pink/10 px-4 py-1.5 text-sm font-medium text-emprise-pink mb-4">
             Why Choose Us
           </div>
@@ -94,12 +64,12 @@ const WhyChooseUsSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" ref={cardsRef}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
               className={cn(
-                "p-6 rounded-xl border border-gray-100 shadow-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1 benefit-card opacity-0",
+                "p-6 rounded-xl border border-gray-100 shadow-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
                 index % 2 === 0 ? "bg-white" : "glass-card"
               )}
             >

@@ -4,11 +4,11 @@ import { GraduationCap, Award, Globe, BookOpen } from 'lucide-react';
 
 const FounderSection = () => {
   return (
-    <section className="py-16 bg-gray-50 relative">
+    <section className="py-12 bg-gray-50 relative">
       <div className="container mx-auto container-padding">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Column - Founder Image */}
-          <div className="relative animate-fade-in-left">
+          <div className="relative">
             {/* Main Image */}
             <div className="rounded-2xl overflow-hidden shadow-card border border-gray-100 transform transition-all duration-500 hover:scale-[1.02]">
               <img 
@@ -19,7 +19,7 @@ const FounderSection = () => {
             </div>
             
             {/* Floating Experience Card */}
-            <div className="glass-card absolute top-8 -right-8 p-4 max-w-[200px] animate-float hidden md:block">
+            <div className="glass-card absolute top-8 -right-8 p-4 max-w-[200px] hidden md:block">
               <div className="flex items-center space-x-3">
                 <div className="rounded-full bg-emprise-gold/10 p-2">
                   <Award size={20} className="text-emprise-gold" />
@@ -32,7 +32,7 @@ const FounderSection = () => {
             </div>
             
             {/* Floating Education Card */}
-            <div className="glass-card absolute -bottom-8 -left-8 p-4 max-w-[220px] animate-float animation-delay-500 hidden md:block">
+            <div className="glass-card absolute -bottom-8 -left-8 p-4 max-w-[220px] hidden md:block">
               <div className="flex items-center space-x-3">
                 <div className="rounded-full bg-emprise-pink/10 p-2">
                   <GraduationCap size={20} className="text-emprise-pink" />
@@ -46,7 +46,7 @@ const FounderSection = () => {
           </div>
           
           {/* Right Column - Founder Details */}
-          <div className="space-y-6 animate-fade-in-right">
+          <div className="space-y-6">
             <div className="inline-block rounded-full bg-emprise-pink/10 px-4 py-1.5 text-sm font-medium text-emprise-pink">
               Meet Our Founder
             </div>

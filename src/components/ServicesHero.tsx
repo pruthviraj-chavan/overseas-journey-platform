@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const ServicesHero = () => {
   return (
-    <section className="relative bg-gradient-to-r from-emprise-blue to-emprise-blue/90 py-16 md:py-20 overflow-hidden">
-      {/* Simplified background for better performance */}
+    <section className="relative bg-gradient-to-r from-emprise-blue to-emprise-blue/90 py-12 md:py-16 overflow-hidden">
+      {/* Simple background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       
       <div className="absolute -bottom-1 left-0 w-full overflow-hidden">

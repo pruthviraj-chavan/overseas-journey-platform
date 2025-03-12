@@ -1,34 +1,8 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { MessageSquare, FileSearch, GraduationCap, FileText, Plane, CheckCircle } from 'lucide-react';
 
 const WorkProcessSection = () => {
-  const timelineRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    const steps = timelineRef.current?.querySelectorAll('.timeline-step') || [];
-    steps.forEach(step => {
-      observer.observe(step);
-    });
-    
-    return () => {
-      steps.forEach(step => {
-        observer.unobserve(step);
-      });
-    };
-  }, []);
-
   const steps = [
     {
       icon: <MessageSquare size={24} />,
@@ -69,9 +43,9 @@ const WorkProcessSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50 relative">
+    <section className="py-12 bg-gray-50 relative">
       <div className="container mx-auto container-padding">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-block rounded-full bg-emprise-pink/10 px-4 py-1.5 text-sm font-medium text-emprise-pink mb-4">
             Our Process
           </div>
@@ -86,14 +60,14 @@ const WorkProcessSection = () => {
           </p>
         </div>
         
-        <div className="relative" ref={timelineRef}>
+        <div className="relative">
           {/* Timeline Line */}
           <div className="absolute left-[50%] top-0 bottom-0 w-1 bg-gradient-to-b from-emprise-pink to-emprise-blue/50 hidden md:block"></div>
           
           {/* Timeline Steps */}
-          <div className="space-y-12 md:space-y-0">
+          <div className="space-y-8 md:space-y-0">
             {steps.map((step, index) => (
-              <div key={index} className={`md:grid md:grid-cols-2 md:gap-8 items-center timeline-step opacity-0`} style={{ animationDelay: `${index * 150}ms` }}>
+              <div key={index} className={`md:grid md:grid-cols-2 md:gap-8 items-center mb-8`}>
                 <div className={`md:col-span-1 ${index % 2 === 0 ? 'md:text-right md:order-1' : 'md:order-2'}`}>
                   <div className={`glass-card p-6 rounded-xl border border-gray-100 shadow-card ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
                     <div className={`inline-flex rounded-full p-3 text-white mb-4 bg-gradient-to-br ${step.color}`}>
