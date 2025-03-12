@@ -9,42 +9,31 @@ import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import ContactCTA from '@/components/ContactCTA';
 
 const About = () => {
-  // Scroll to top on page load
+  // Scroll to top on page load and set up animations
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Add IntersectionObserver for animation with better performance
+    // Simplified IntersectionObserver configuration for better performance
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
-            // Once the animation is added, we don't need to observe this element anymore
             observer.unobserve(entry.target);
           }
         });
       },
-      { 
-        threshold: 0.1, 
-        rootMargin: '0px 0px -50px 0px' // Reduced from -100px to -50px for faster triggering
-      }
+      { threshold: 0.1 }
     );
     
-    // Observe all sections that should animate - with a slight delay to improve initial page load
-    setTimeout(() => {
-      const animateSections = document.querySelectorAll('.animate-on-scroll');
-      animateSections.forEach(section => {
-        section.classList.remove('animate-fade-in');
-        observer.observe(section);
-      });
-    }, 100);
+    // Immediately observe sections instead of using setTimeout
+    document.querySelectorAll('.animate-on-scroll').forEach(section => {
+      section.classList.remove('opacity-0');
+      observer.observe(section);
+    });
     
     return () => {
-      // Clean up the observer
-      const animateSections = document.querySelectorAll('.animate-on-scroll');
-      animateSections.forEach(section => {
-        observer.unobserve(section);
-      });
+      observer.disconnect();
     };
   }, []);
 
@@ -54,7 +43,7 @@ const About = () => {
       
       <main className="flex-grow">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-emprise-pink to-emprise-pink/90 py-12 md:py-16 relative overflow-hidden">
+        <section className="bg-gradient-to-r from-emprise-blue to-emprise-blue/90 py-12 md:py-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="absolute -bottom-1 left-0 w-full overflow-hidden">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[40px]">
@@ -107,16 +96,16 @@ const About = () => {
           </div>
         </section>
         
-        <div className="animate-on-scroll opacity-0">
+        <div className="animate-on-scroll">
           <FounderSection />
         </div>
-        <div className="animate-on-scroll opacity-0">
+        <div className="animate-on-scroll">
           <WhyChooseUsSection />
         </div>
-        <div className="animate-on-scroll opacity-0">
+        <div className="animate-on-scroll">
           <MissionSection />
         </div>
-        <div className="animate-on-scroll opacity-0">
+        <div className="animate-on-scroll">
           <WorkProcessSection />
         </div>
         <ContactCTA />

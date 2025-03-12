@@ -12,11 +12,11 @@ const ServiceProcess = () => {
         if (entries[0].isIntersecting) {
           const steps = processRef.current?.querySelectorAll('.process-step');
           steps?.forEach((step, index) => {
+            // Faster animation with 70ms delay between steps
             setTimeout(() => {
               step.classList.add('animate-fade-in');
-            }, index * 100); // Reduced from 150ms to 100ms
+            }, index * 70);
           });
-          // Once triggered, disconnect for better performance
           observer.disconnect();
         }
       },
@@ -37,37 +37,31 @@ const ServiceProcess = () => {
       step: "1",
       title: "Get in Touch",
       description: "Schedule an initial consultation with our expert counselors either in-person or online.",
-      delay: 0
     },
     {
       step: "2",
       title: "Profile Assessment",
       description: "We evaluate your academic background, goals, and preferences to create a personalized plan.",
-      delay: 100
     },
     {
       step: "3",
       title: "University & Course Selection",
       description: "Based on your profile, we recommend universities and programs that align with your aspirations.",
-      delay: 200
     },
     {
       step: "4",
       title: "Application Submission",
       description: "We assist with preparing and submitting strong applications to chosen universities.",
-      delay: 300
     },
     {
       step: "5",
       title: "Visa Process",
       description: "After receiving acceptance, we guide you through the complete visa application process.",
-      delay: 400
     },
     {
       step: "6",
       title: "Pre-Departure Guidance",
       description: "We prepare you for your journey with essential information about your destination.",
-      delay: 500
     }
   ];
 
@@ -96,30 +90,13 @@ const ServiceProcess = () => {
         </div>
         
         <div ref={processRef} className="relative">
-          {/* Process Timeline (Desktop) */}
-          <div className="hidden lg:flex justify-between items-center mb-6">
-            <div className="w-full h-2 bg-gray-200 absolute"></div>
-            
-            {process.map((step, index) => (
-              <div 
-                key={index} 
-                className="relative z-10 flex flex-col items-center process-step opacity-0"
-              >
-                <div className="w-12 h-12 rounded-full bg-gradient-pink text-white flex items-center justify-center font-bold mb-2">
-                  {step.step}
-                </div>
-                <p className="text-sm font-medium text-emprise-blue">{step.title}</p>
-              </div>
-            ))}
-          </div>
-          
-          {/* Process Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          {/* Process Cards - Simplified grid for better performance */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {process.map((step, index) => (
               <div 
                 key={index} 
                 className={cn(
-                  "glass-card p-5 rounded-xl border border-gray-100 shadow-card process-step opacity-0 transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
+                  "glass-card p-5 rounded-xl border border-gray-100 shadow-card process-step opacity-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
                   index % 2 === 0 ? "bg-white" : "glass-card"
                 )}
               >
@@ -137,7 +114,7 @@ const ServiceProcess = () => {
           </div>
           
           {/* Success Section */}
-          <div className="text-center mt-12 p-6 rounded-2xl bg-gradient-to-r from-emprise-pink to-emprise-pink/90 text-white shadow-xl animate-fade-in">
+          <div className="text-center mt-12 p-6 rounded-2xl bg-gradient-to-r from-emprise-pink to-emprise-pink/90 text-white shadow-xl">
             <CheckCircle size={36} className="mx-auto mb-3" />
             <h3 className="text-2xl font-bold mb-3">Begin Your Global Education Journey</h3>
             <p className="mb-5 max-w-2xl mx-auto">
