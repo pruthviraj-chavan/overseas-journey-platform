@@ -14,7 +14,7 @@ const Services = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Add IntersectionObserver for animation
+    // Add IntersectionObserver for animation with better performance
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -25,18 +25,24 @@ const Services = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+      { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px' // Reduced from -100px to -50px for faster triggering
+      }
     );
     
-    // Observe all sections that should animate
-    const animateSections = document.querySelectorAll('.animate-on-scroll');
-    animateSections.forEach(section => {
-      section.classList.remove('animate-fade-in');
-      observer.observe(section);
-    });
+    // Observe all sections that should animate - with a slight delay to improve initial page load
+    setTimeout(() => {
+      const animateSections = document.querySelectorAll('.animate-on-scroll');
+      animateSections.forEach(section => {
+        section.classList.remove('animate-fade-in');
+        observer.observe(section);
+      });
+    }, 100);
     
     return () => {
       // Clean up the observer
+      const animateSections = document.querySelectorAll('.animate-on-scroll');
       animateSections.forEach(section => {
         observer.unobserve(section);
       });
@@ -44,7 +50,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navigation />
       
       <main className="flex-grow">

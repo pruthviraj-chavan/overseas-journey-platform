@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ServicesHero = () => {
   return (
-    <section className="relative bg-gradient-to-r from-emprise-blue to-emprise-blue/90 py-20 md:py-24 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-emprise-blue to-emprise-blue/90 py-16 md:py-20 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
@@ -21,18 +20,18 @@ const ServicesHero = () => {
       
       <div className="container mx-auto container-padding relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-block rounded-full bg-white/30 px-4 py-1.5 text-sm font-medium text-white mb-4 animate-fade-in">
+          <div className="inline-block rounded-full bg-white/30 px-4 py-1.5 text-sm font-medium text-white mb-3 animate-fade-in">
             Our Comprehensive Services
           </div>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 animate-fade-in animation-delay-200">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 animate-fade-in animation-delay-200">
             Transform Your <span className="relative">
               <span className="relative z-10">Future</span>
               <span className="absolute bottom-0 left-0 w-full h-[0.6rem] bg-emprise-pink/40 -z-10"></span>
             </span> With Global Education
           </h1>
           
-          <p className="text-white/90 text-lg md:text-xl mb-6 animate-fade-in animation-delay-300">
+          <p className="text-white/90 text-lg md:text-xl mb-5 animate-fade-in animation-delay-300">
             We offer end-to-end support for your international education journey, 
             from university selection to pre-departure guidance.
           </p>

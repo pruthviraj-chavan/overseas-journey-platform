@@ -13,7 +13,7 @@ const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Add IntersectionObserver for animation
+    // Add IntersectionObserver for animation with better performance
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -24,18 +24,24 @@ const About = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+      { 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px' // Reduced from -100px to -50px for faster triggering
+      }
     );
     
-    // Observe all sections that should animate
-    const animateSections = document.querySelectorAll('.animate-on-scroll');
-    animateSections.forEach(section => {
-      section.classList.remove('animate-fade-in');
-      observer.observe(section);
-    });
+    // Observe all sections that should animate - with a slight delay to improve initial page load
+    setTimeout(() => {
+      const animateSections = document.querySelectorAll('.animate-on-scroll');
+      animateSections.forEach(section => {
+        section.classList.remove('animate-fade-in');
+        observer.observe(section);
+      });
+    }, 100);
     
     return () => {
       // Clean up the observer
+      const animateSections = document.querySelectorAll('.animate-on-scroll');
       animateSections.forEach(section => {
         observer.unobserve(section);
       });
@@ -43,12 +49,12 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navigation />
       
       <main className="flex-grow">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-emprise-pink to-emprise-pink/90 py-16 md:py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-r from-emprise-pink to-emprise-pink/90 py-12 md:py-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           <div className="absolute -bottom-1 left-0 w-full overflow-hidden">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[40px]">
@@ -58,7 +64,7 @@ const About = () => {
           
           <div className="container mx-auto container-padding relative z-10">
             <div className="text-center">
-              <h1 className="text-white mb-4 text-3xl md:text-4xl lg:text-5xl animate-fade-in">About Emprise Study Abroad</h1>
+              <h1 className="text-white mb-3 text-3xl md:text-4xl lg:text-5xl animate-fade-in">About Emprise Study Abroad</h1>
               <p className="text-white/90 max-w-3xl mx-auto text-lg md:text-xl animate-fade-in animation-delay-200">
                 Your dedicated partner for transforming educational aspirations into international success stories.
               </p>
@@ -66,33 +72,33 @@ const About = () => {
           </div>
         </section>
         
-        {/* Company Overview Section */}
-        <section className="py-12 md:py-16 bg-white">
+        {/* Company Overview Section - Reduced padding */}
+        <section className="py-8 md:py-12 bg-white">
           <div className="container mx-auto container-padding">
             <div className="text-center max-w-4xl mx-auto">
               <div className="inline-block rounded-full bg-emprise-pink/10 px-4 py-1.5 text-sm font-medium text-emprise-pink mb-4 animate-fade-in">
                 Our Story
               </div>
               
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 animate-fade-in animation-delay-200">
+              <h2 className="text-2xl md:text-3xl font-bold mb-5 animate-fade-in animation-delay-200">
                 Guiding Dreams Towards <span className="text-gradient">Global Opportunities</span>
               </h2>
               
-              <p className="text-emprise-blue/80 text-base md:text-lg mb-6 animate-fade-in animation-delay-300">
+              <p className="text-emprise-blue/80 text-base md:text-lg mb-5 animate-fade-in animation-delay-300">
                 Established in 2021, Emprise Study Abroad in Shahupuri, Kolhapur, is a leading 
                 Overseas Education Consultancy helping students achieve their dream of studying abroad.
                 With a commitment to excellence and personalized guidance, we've successfully placed 
                 over 1000 students in prestigious universities worldwide.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 {[
                   { number: "1000+", label: "Successful Placements" },
                   { number: "50+", label: "Partner Universities" },
                   { number: "5+", label: "Years of Experience" }
                 ].map((stat, index) => (
-                  <div key={index} className="glass-card p-4 md:p-6 rounded-xl shadow-card animate-fade-in animation-delay-400" style={{ animationDelay: `${400 + (index * 100)}ms` }}>
-                    <h3 className="text-2xl md:text-3xl font-bold text-emprise-pink mb-2">{stat.number}</h3>
+                  <div key={index} className="glass-card p-4 rounded-xl shadow-card animate-fade-in" style={{ animationDelay: `${400 + (index * 100)}ms` }}>
+                    <h3 className="text-2xl md:text-3xl font-bold text-emprise-pink mb-1">{stat.number}</h3>
                     <p className="text-emprise-blue/70">{stat.label}</p>
                   </div>
                 ))}
