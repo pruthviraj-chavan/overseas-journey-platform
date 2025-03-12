@@ -153,6 +153,46 @@
   }
 }
 
+/* Animation Delay Classes */
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-700 {
+  animation-delay: 700ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+/* Background Patterns */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
 /* Smooth transitions for page changes */
 .page-transition-enter {
   opacity: 0;
@@ -174,4 +214,16 @@
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 400ms, transform 400ms;
+}
+
+/* Mobile Animation Adjustments */
+@media (max-width: 768px) {
+  .animate-float {
+    animation: none;
+  }
+  
+  .animate-fade-in-left, 
+  .animate-fade-in-right {
+    animation: fade-in 0.6s ease-out;
+  }
 }
